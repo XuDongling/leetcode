@@ -1,0 +1,17 @@
+largest-number
+
+class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        n = len(nums)
+        str_nums = list(map(str, nums))
+        str_nums.sort(reverse=True)
+        for i in range(1, n):
+            for j in range(i):
+                if str_nums[j] + str_nums[i] < str_nums[i] + str_nums[j]:
+                    str_nums[i], str_nums[j] = str_nums[j],str_nums[i]
+        largest_num = ''.join(str_nums)
+        if largest_num[0] == '0':
+            return '0'
+        else:
+            return largest_num
+
