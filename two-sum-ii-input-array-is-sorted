@@ -1,0 +1,25 @@
+class Solution:
+    def binary_search(self, li, val, left, right):
+        while left <= right:
+            mid = (left + right) // 2
+            if li[mid] > val:
+                right = mid - 1
+            elif li[mid] < val:
+                left = mid + 1
+            else:
+                return mid
+        else:
+            return None
+    
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        n = len(numbers)
+        for i in range(n):
+            a = numbers[i]
+            b = target - a
+            if b >= a:
+                j = self.binary_search(numbers, b, i+1, n-1)
+            else:
+                j = self.binary_search(numbers, b, 0, i-1)
+            if j:
+                break
+        return sorted([i+1, j+1])
